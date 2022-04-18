@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="SRiazanov_ComputerVisionApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SRiazanov_ComputerVisionApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MinHeight="750" />
+                <RowDefinition Height="178" />
+                <RowDefinition Height="0*" />
+            </Grid.RowDefinitions>
+            <RelativePanel x:ConnectionId='2' x:Name="Headers" Grid.Row="1"  >
+                <TextBlock x:ConnectionId='11' x:Name="lblTitle" Text="Computer Vision Tool. Serge Riazanov for 1442 Final Project" FontSize="24" TextAlignment="Right" Margin="10,20,10,0" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
+                <TextBlock x:ConnectionId='12' x:Name="lblSubheader" Text="Upload a picture to get a description" FontSize="20" TextAlignment="Right" Margin="10,5,10,10" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="lblTitle" />
+                <Rectangle Fill="#FFF4F4F5" Height="1" Stroke="Black" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="lblSubheader" Margin="20,0,20,5"/>
+            </RelativePanel>
+            <RelativePanel x:ConnectionId='3' x:Name="ImageArea" Grid.Row="3" Margin="0,0,0,2" >
+                <Image x:ConnectionId='8' x:Name="imgPreview" Height="517" Width="749" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,30,10,0"/>
+                <TextBlock x:ConnectionId='9' x:Name="lblDescription" Text="" FontSize="24" TextAlignment="Left" 
+                    RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="imgPreview" Width="696" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock x:ConnectionId='10' Text="" x:Name="lblTags" FontSize="24" TextAlignment="Left" TextWrapping="Wrap" Height="544" Width="356" VerticalAlignment="Center"/>
+            </RelativePanel>
+
+            <RelativePanel x:ConnectionId='4' x:Name="CommandButtons" Grid.Row="4" Margin="0,10,0,10" >
+                <Button x:ConnectionId='5' x:Name="btnUpload" Content="Upload Picture" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                         Width="200" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#0099CC"/>
+                            <GradientStop Color="#33b5e5" Offset="0.8"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:ConnectionId='6' x:Name="btnAnalyze" Content="Analyze Picture" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                          Width="200" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0" HorizontalAlignment="Center">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#00695c"/>
+                            <GradientStop Color="#2BBBAD" Offset="0.8"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+                <Button x:ConnectionId='7' x:Name="btnClear" Content="Clear" HorizontalAlignment="Right" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="" Width="200" Margin="0,0,20,10"                        Foreground="#FFFBF5F5" FontSize="23">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#CC0000" Offset="0"/>
+                            <GradientStop Color="#ff4444" Offset="0.8"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </RelativePanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
+
