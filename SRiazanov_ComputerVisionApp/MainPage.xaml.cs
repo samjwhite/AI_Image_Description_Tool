@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Storage;
 using SRiazanov_ComputerVisionApp.Utilities;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Xaml.Shapes;
 
 /// <summary>
 /// 1442 Final Project - Computer Vision.
@@ -34,8 +35,6 @@ namespace SRiazanov_ComputerVisionApp
         // Add your Computer Vision subscription key and endpoint
         static string subscriptionKey = "15b1b5d0e0ee4e96a849f19e6f6c6199";
         static string endpoint = "https://sriazanov-computer-vision.cognitiveservices.azure.com";
-        // URL image used for analyzing an image (image of puppy)
-        private const string ANALYZE_URL_IMAGE = "https://indie88.com/wp-content/uploads/2016/05/Streets1190.jpg";
         //file with picture
         StorageFile file;
         // Create a client
@@ -65,8 +64,10 @@ namespace SRiazanov_ComputerVisionApp
                 try
                 {
                     var image = new BitmapImage();
+                    
                     using (var stream = await file.OpenAsync(FileAccessMode.Read))
                     {
+                        
                         image.SetSource(stream);
                         imgPreview.Source = image;
                     }
@@ -74,11 +75,13 @@ namespace SRiazanov_ComputerVisionApp
                 catch (Exception ex)
                 {
 
-                    Jeeves.ShowMessage("Error", ex.Message);
-                }   
+                   Jeeves.ShowMessage("Error", ex.Message);
+                } 
             }
             lblDescription.Text = "";
             lblTags.Text = "";
+
+            lbxTags.Items.Clear();
         }
 
         private async void btnAnalyze_Click(object sender, RoutedEventArgs e)
@@ -94,11 +97,18 @@ namespace SRiazanov_ComputerVisionApp
                     }
                     if(result.Tags != null)
                     {
-                            lblTags.Text = "Tags: \n";
+                        lblTags.Text = "Tags: \n";
                         foreach (var tag in result.Tags)
                         {
                             lblTags.Text += $"\n{tag.Name} {Math.Round(tag.Confidence, 2) * 100}%";
+                            
                         }
+                        foreach (var obj in result.Objects)
+                        {
+                            lbxTags.Items.Add(obj.ObjectProperty);
+                        }
+
+
                     }
                 }
             }
@@ -123,63 +133,38 @@ namespace SRiazanov_ComputerVisionApp
             return results;
         }
 
-       
-
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
             lblTags.Text = "";
             lblDescription.Text = "";
-            
+            //imageGrid.Children.Clear();
+            lbxTags.Items.Clear();
+
         }
 
-  
-
-      /*  public static async Task AnalyzeImageFile(ComputerVisionClient client, string fileName)
+        //draw a rectangle on the borders of the selected object
+        private async void  lbxTags_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Console.WriteLine("----------------------------------------------------------");
-            Console.WriteLine("ANALYZE IMAGE - FILE");
-            Console.WriteLine();
-
-            // Creating a list that defines the features to be extracted from the image. 
-
-            List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
+            if (!(lbxTags.SelectedIndex == -1)) 
+            { 
+            //imageGrid.Children.Clear();
+            var index = lbxTags.SelectedIndex;
+            using (var stream = await file.OpenStreamForReadAsync())
             {
-                VisualFeatureTypes.Tags, VisualFeatureTypes.Categories,
-                VisualFeatureTypes.Faces, VisualFeatureTypes.Adult,
-                VisualFeatureTypes.Color, VisualFeatureTypes.Brands,
-                VisualFeatureTypes.Objects, VisualFeatureTypes.Description
-            };
-
-            Console.WriteLine($"Analyzing the image {Path.GetFileName(fileName)}...");
-            Console.WriteLine();
-            // Analyze the URL image 
-            // ImageAnalysis results = await client.AnalyzeImageAsync(fileName);
-            using (var imageStream = File.OpenRead(fileName))
-            {
-                var results = await client.AnalyzeImageInStreamAsync(imageStream, visualFeatures: features);
-
-                // Image Description
-                MainPage page = new MainPage();
-                page.lblDescription.Text = "Description: ";
-                foreach (var caption in results.Description.Captions)
-                {
-                    page.lblDescription.Text += $"{caption.Text}";
+                var result = await GetAnalysisResults(client, stream);
+                var rectangle = new FaceRectangle();
+                var objRectangle = new Rectangle();
+                    
+               rectangle = new FaceRectangle(result.Objects[index].Rectangle.X, result.Objects[index].Rectangle.Y, result.Objects[index].Rectangle.W, result.Objects[index].Rectangle.H);
+                objRectangle.Width = rectangle.Width;
+                objRectangle.Height = rectangle.Height;
+                objRectangle.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
+                objRectangle.HorizontalAlignment = (HorizontalAlignment)rectangle.Left;
+                objRectangle.VerticalAlignment = (VerticalAlignment)rectangle.Top;
+                
+                imageGrid.Children.Add(objRectangle);
                 }
-                Console.WriteLine();
-
-
-                // Image tags and their confidence score
-                Console.WriteLine("Tags:");
-                foreach (var tag in results.Tags)
-                {
-                    Console.WriteLine($"{tag.Name} {tag.Confidence}");
-                }
-                Console.WriteLine();
-
             }
-
-        }*/
-
-       
+        }
     }
 }

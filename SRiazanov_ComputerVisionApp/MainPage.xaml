@@ -25,10 +25,14 @@
                 <Rectangle Fill="#FFF4F4F5" Height="1" Stroke="Black" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="lblSubheader" Margin="20,0,20,5"/>
             </RelativePanel>
             <RelativePanel x:Name="ImageArea" Grid.Row="3" Margin="0,0,0,2" >
-                <Image x:Name="imgPreview" Height="517" Width="749" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,30,10,0"/>
+                <Grid x:Name="imageGrid" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,30,10,0">
+                <Image x:Name="imgPreview" Height="517" Width="755"  />
+                </Grid>
                 <TextBlock x:Name="lblDescription" Text="" FontSize="24" TextAlignment="Left" 
-                    RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="imgPreview" Width="696" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="imageGrid" Width="696" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
                 <TextBlock Text="" x:Name="lblTags" FontSize="24" TextAlignment="Left" TextWrapping="Wrap" Height="544" Width="356" VerticalAlignment="Center"/>
+                <ListBox  x:Name="lbxTags" FontSize="24" Height="544" Width="356" VerticalAlignment="Center" HorizontalAlignment="Right"  RelativePanel.AlignRightWithPanel="True" SelectionChanged="lbxTags_SelectionChanged"/>
+
             </RelativePanel>
 
             <RelativePanel x:Name="CommandButtons" Grid.Row="4" Margin="0,10,0,10" >
