@@ -30,13 +30,13 @@
     <AppXManifest Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2022-04-19T02:14:23.972</Modified>
+      <Modified>2022-04-19T15:04:09.585</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\SRiazanov_ComputerVisionApp.exe">
       <PackagePath>entrypoint\SRiazanov_ComputerVisionApp.exe</PackagePath>
-      <Modified>2022-04-19T02:14:23.642</Modified>
+      <Modified>2022-04-19T15:04:08.989</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\sergi\.nuget\packages\microsoft.azure.cognitiveservices.vision.computervision\7.0.1\lib\netstandard2.0\Microsoft.Azure.CognitiveServices.Vision.ComputerVision.dll">
       <PackagePath>Microsoft.Azure.CognitiveServices.Vision.ComputerVision.dll</PackagePath>
@@ -106,15 +106,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\SRiazanov_ComputerVisionApp.xr.xml">
       <PackagePath>SRiazanov_ComputerVisionApp.xr.xml</PackagePath>
-      <Modified>2022-04-19T01:54:35.957</Modified>
+      <Modified>2022-04-19T14:07:05.517</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2022-04-19T02:05:57.902</Modified>
+      <Modified>2022-04-19T14:38:38.518</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2022-04-19T02:05:57.902</Modified>
+      <Modified>2022-04-19T14:38:38.518</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -126,7 +126,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="S:\OneDrive - NC\Desktop\College Resources\Term 4\PROG1442\Final Project\SRiazanov_ComputerVisionApp\SRiazanov_ComputerVisionApp\bin\x86\Debug\Core\SRiazanov_ComputerVisionApp.exe">
       <PackagePath>SRiazanov_ComputerVisionApp.exe</PackagePath>
-      <Modified>2022-04-19T02:14:23.968</Modified>
+      <Modified>2022-04-19T15:04:09.585</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

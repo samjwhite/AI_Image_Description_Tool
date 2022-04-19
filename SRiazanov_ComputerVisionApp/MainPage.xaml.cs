@@ -39,6 +39,7 @@ namespace SRiazanov_ComputerVisionApp
         StorageFile file;
         // Create a client
         ComputerVisionClient client = Authenticate(endpoint, subscriptionKey);
+        
         public MainPage()
         {
             this.InitializeComponent();            
@@ -64,26 +65,24 @@ namespace SRiazanov_ComputerVisionApp
                 try
                 {
                     var image = new BitmapImage();
-                    
                     using (var stream = await file.OpenAsync(FileAccessMode.Read))
-                    {
-                        
+                    { 
                         image.SetSource(stream);
                         imgPreview.Source = image;
-                    }
+                        
+                    }  
                 }
                 catch (Exception ex)
                 {
-
                    Jeeves.ShowMessage("Error", ex.Message);
                 } 
             }
             lblDescription.Text = "";
             lblTags.Text = "";
-
             lbxTags.Items.Clear();
         }
 
+        //get image description, tags and detect objects if any
         private async void btnAnalyze_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -97,18 +96,15 @@ namespace SRiazanov_ComputerVisionApp
                     }
                     if(result.Tags != null)
                     {
-                        lblTags.Text = "Tags: \n";
+                        lblTags.Text = "";
                         foreach (var tag in result.Tags)
                         {
-                            lblTags.Text += $"\n{tag.Name} {Math.Round(tag.Confidence, 2) * 100}%";
-                            
+                            lblTags.Text += $"\n{tag.Name} {Math.Round(tag.Confidence, 2) * 100}%";          
                         }
                         foreach (var obj in result.Objects)
                         {
                             lbxTags.Items.Add(obj.ObjectProperty);
                         }
-
-
                     }
                 }
             }
@@ -123,9 +119,7 @@ namespace SRiazanov_ComputerVisionApp
             // Creating a list that defines the features to be extracted from the image. 
             List<VisualFeatureTypes?> features = new List<VisualFeatureTypes?>()
             {
-                 VisualFeatureTypes.Tags, VisualFeatureTypes.Categories,
-                VisualFeatureTypes.Faces, VisualFeatureTypes.Adult,
-                VisualFeatureTypes.Color, VisualFeatureTypes.Brands,
+                 VisualFeatureTypes.Tags, VisualFeatureTypes.Faces,
                 VisualFeatureTypes.Objects, VisualFeatureTypes.Description
             };
 
@@ -145,9 +139,9 @@ namespace SRiazanov_ComputerVisionApp
         //draw a rectangle on the borders of the selected object
         private async void  lbxTags_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!(lbxTags.SelectedIndex == -1)) 
+            /*if (!(lbxTags.SelectedIndex == -1)) 
             { 
-            //imageGrid.Children.Clear();
+           
             var index = lbxTags.SelectedIndex;
             using (var stream = await file.OpenStreamForReadAsync())
             {
@@ -159,12 +153,16 @@ namespace SRiazanov_ComputerVisionApp
                 objRectangle.Width = rectangle.Width;
                 objRectangle.Height = rectangle.Height;
                 objRectangle.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
-                objRectangle.HorizontalAlignment = (HorizontalAlignment)rectangle.Left;
-                objRectangle.VerticalAlignment = (VerticalAlignment)rectangle.Top;
-                
-                imageGrid.Children.Add(objRectangle);
+                    *//* objRectangle.HorizontalAlignment = (HorizontalAlignment)rectangle.Left;
+                     objRectangle.VerticalAlignment = (VerticalAlignment)rectangle.Top;*//*
+
+                    imageGrid.Children.Add(objRectangle);
+                    Canvas.SetTop(objRectangle, rectangle.Top);
+                    Canvas.SetLeft(objRectangle, rectangle.Left);
+
+                   // imageGrid.Children.Add(objRectangle);
                 }
-            }
+            }*/
         }
     }
 }

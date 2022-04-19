@@ -7,8 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <ScrollViewer>
-        <Grid>
+
+    <ScrollViewer Margin="0,0,0,0">
+        <Grid Height="970">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="269*"/>
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -17,26 +23,33 @@
                 <RowDefinition Height="178" />
                 <RowDefinition Height="0*" />
             </Grid.RowDefinitions>
-            <RelativePanel x:ConnectionId='2' x:Name="Headers" Grid.Row="1"  >
-                <TextBlock x:ConnectionId='13' x:Name="lblTitle" Text="Computer Vision Tool. Serge Riazanov for 1442 Final Project" FontSize="24" TextAlignment="Right" Margin="10,20,10,0" 
-                       RelativePanel.AlignHorizontalCenterWithPanel="True" />
-                <TextBlock x:ConnectionId='14' x:Name="lblSubheader" Text="Upload a picture to get a description" FontSize="20" TextAlignment="Right" Margin="10,5,10,10" 
-                       RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="lblTitle" />
-                <Rectangle Fill="#FFF4F4F5" Height="1" Stroke="Black" HorizontalAlignment="Stretch" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="lblSubheader" Margin="20,0,20,5"/>
+            <RelativePanel x:ConnectionId='2' x:Name="Headers" Grid.Row="1" Background="#FF06ABE8" Grid.ColumnSpan="3"  >
+                <TextBlock x:ConnectionId='13' x:Name="lblTitle" Text="Computer Vision Tool. Serge Riazanov for 1442 Final Project"  FontSize="36" TextAlignment="Right" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" FocusVisualPrimaryBrush="White" Foreground="White" Margin="0,20,0,0" />
+                <TextBlock x:ConnectionId='14' x:Name="lblSubheader" Text="Upload a picture to get a description" FontSize="22" TextAlignment="Right" Margin="10,5,10,10" 
+                       RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="lblTitle" Foreground="White" />
             </RelativePanel>
-            <RelativePanel x:ConnectionId='3' x:Name="ImageArea" Grid.Row="3" Margin="0,0,0,2" >
+
+            <RelativePanel x:ConnectionId='3' x:Name="ImageArea" Grid.Row="3" Margin="0,5,0,2" Background="#FFF0F6FF" Grid.ColumnSpan="3" >
+                <Border Background="#FF06ABE8" Width="356" Margin="10,0,0,0">
+                    <TextBlock  Text="Tags         |       Confidence" Foreground="White" FontSize="24"  RelativePanel.AlignLeftWithPanel="True" HorizontalAlignment="Center" Margin="0,0,0,0" />
+                </Border>
+                <Border Background="#FF06ABE8" RelativePanel.AlignRightWithPanel="True" HorizontalAlignment="Right" Width="356" Margin="0,0,10,0" >
+                    <TextBlock  Text="Detected Objects" Foreground="White" FontSize="24"  RelativePanel.AlignRightWithPanel="True" HorizontalAlignment="Center"  Margin="0,0,0,0"/>
+                </Border>
+
                 <Grid x:ConnectionId='8' x:Name="imageGrid" RelativePanel.AlignHorizontalCenterWithPanel="True" Margin="0,30,10,0">
-                <Image x:ConnectionId='12' x:Name="imgPreview" Height="517" Width="755"  />
+                    <Image x:ConnectionId='12' x:Name="imgPreview" Height="517" Width="755"  />
                 </Grid>
                 <TextBlock x:ConnectionId='9' x:Name="lblDescription" Text="" FontSize="24" TextAlignment="Left" 
                     RelativePanel.AlignHorizontalCenterWithPanel="True" RelativePanel.Below="imageGrid" Width="696" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                <TextBlock x:ConnectionId='10' Text="" x:Name="lblTags" FontSize="24" TextAlignment="Left" TextWrapping="Wrap" Height="544" Width="356" VerticalAlignment="Center"/>
-                <ListBox x:ConnectionId='11'  x:Name="lbxTags" FontSize="24" Height="544" Width="356" VerticalAlignment="Center" HorizontalAlignment="Right"  RelativePanel.AlignRightWithPanel="True"                                            />
+                <TextBlock x:ConnectionId='10' Text="" Margin="10,35,0,0" x:Name="lblTags" FontSize="24" TextAlignment="Left" TextWrapping="Wrap" Height="544" Width="356" VerticalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxWidth="356"/>
+                <ListBox x:ConnectionId='11'  x:Name="lbxTags" Margin="0,35,10,0"  FontSize="24" Height="544" Width="356" VerticalAlignment="Center" HorizontalAlignment="Right"  RelativePanel.AlignRightWithPanel="True"                                            />
 
             </RelativePanel>
 
-            <RelativePanel x:ConnectionId='4' x:Name="CommandButtons" Grid.Row="4" Margin="0,10,0,10" >
-                <Button x:ConnectionId='5' x:Name="btnUpload" Content="Upload Picture" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                         Width="200" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0">
+            <RelativePanel x:ConnectionId='4' x:Name="CommandButtons" Grid.Row="4" Margin="0,10,0,0" Background="#FFF5F9FF" Grid.ColumnSpan="3" >
+                <Button x:ConnectionId='5' x:Name="btnUpload" Content="Upload Picture ⬆️" CornerRadius="5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                         Width="200" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0" Height="85">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#0099CC"/>
@@ -44,7 +57,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:ConnectionId='6' x:Name="btnAnalyze" Content="Analyze Picture" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                          Width="200" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0" HorizontalAlignment="Center">
+                <Button x:ConnectionId='6' x:Name="btnAnalyze" Content="Analyze Picture ⚙️" CornerRadius="5" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True"                          Width="220" Foreground="#FFFBF5F5" FontSize="23" Margin="20,0,0,0" HorizontalAlignment="Center" Height="85">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#00695c"/>
@@ -52,7 +65,7 @@
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
-                <Button x:ConnectionId='7' x:Name="btnClear" Content="Clear" HorizontalAlignment="Right" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="" Width="200" Margin="0,0,20,10"                        Foreground="#FFFBF5F5" FontSize="23">
+                <Button x:ConnectionId='7' x:Name="btnClear" Content="Clear 🧹" CornerRadius="5" HorizontalAlignment="Right" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" RelativePanel.Below="" Width="200" Margin="0,0,20,0"                        Foreground="#FFFBF5F5" FontSize="23" Height="85">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="#CC0000" Offset="0"/>

@@ -37,14 +37,7 @@ namespace SRiazanov_ComputerVisionApp.Utilities
         public async Task<StorageFile> GetImage()
         {
         StorageFile s = await pick.PickSingleFileAsync();
-           // var prp = await s.GetBasicPropertiesAsync();
-            /*if (prp.Size > 4000000)
-            {
-                MessageDialog dialog = new MessageDialog("File size should be greater than 4 MB");
-                await dialog.ShowAsync();
-                s = null;
-                goto repeat;
-            }*/
+           
             return s;
         }
         public async Task<StorageFile> GetFile(string filename, string foldername)
