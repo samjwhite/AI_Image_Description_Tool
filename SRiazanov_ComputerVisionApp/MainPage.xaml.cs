@@ -33,7 +33,7 @@ namespace SRiazanov_ComputerVisionApp
     public sealed partial class MainPage : Page
     {
         // Add your Computer Vision subscription key and endpoint
-        static string subscriptionKey = "15b1b5d0e0ee4e96a849f19e6f6c6199";
+        static string subscriptionKey = "yourkey";
         static string endpoint = "https://sriazanov-computer-vision.cognitiveservices.azure.com";
         //file with picture
         StorageFile file;
